@@ -235,7 +235,8 @@ class Google(Tse):
         self.host_headers = self.get_headers(self.cn_host_url, if_use_api=False)
         is_detail_result = kwargs.get('is_detail_result', False)
         proxies = kwargs.get('proxies', None)
-        sleep_seconds = kwargs.get('sleep_seconds', 0.05 + random.random()/2 + 1e-100*2**self.query_count)
+        # sleep_seconds = kwargs.get('sleep_seconds', 0.05 + random.random()/2 + 1e-100*2**self.query_count)
+        sleep_seconds = kwargs.get('sleep_seconds', 0.05)
     
         with requests.Session() as ss:
             host_html = ss.get(self.host_url, headers=self.host_headers, proxies=proxies).text
@@ -251,7 +252,7 @@ class Google(Tse):
             r.raise_for_status()
             data = r.json()
         time.sleep(sleep_seconds)
-        self.query_count += 1
+        # self.query_count += 1
         return data if is_detail_result else ''.join([item[0] for item in data[0] if isinstance(item[0],str)])
 
 
