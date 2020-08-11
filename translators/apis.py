@@ -485,7 +485,8 @@ class Tencent(Tse):
         '''
         is_detail_result = kwargs.get('is_detail_result', False)
         proxies = kwargs.get('proxies', None)
-        sleep_seconds = kwargs.get('sleep_seconds', 0.05 + random.random()/2 + 1e-100*2**self.query_count)
+        # sleep_seconds = kwargs.get('sleep_seconds', 0.05 + random.random()/2 + 1e-100*2**self.query_count)
+        sleep_seconds = kwargs.get('sleep_seconds', 0.05)
 
         with requests.Session() as ss:
             host_html = ss.get(self.host_url, headers=self.host_headers,proxies=proxies).text
